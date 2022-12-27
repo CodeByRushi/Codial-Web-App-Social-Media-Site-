@@ -10,7 +10,35 @@ module.exports.contact=function(req,res){
 module.exports.signup = function(req,res){
     return res.render('user_sign_up',{});
 }
+module.exports.createSession = function(req,res){
+    //search user in db
+    User.findOne({email:req.body.email},function(err,data){
+            if(err){
+                console.log("error in finding user while signUp",err);
+                return;
+            }
+            if(!data){
+                //if user does not exists
+                console.log("User doesnt exists");
+                return res.redirect('back');
+            }else{
 
+                //user is exist now check if password is correct
+                if(data.password == req.body.password)
+                {
+                    res.cookie('user_id', data.id);
+                    return res.redirect('/');
+                }else{
+                    //if password is incorrect
+                    console.log("password is incorrect");
+                    return res.redirect('back');
+                }
+                
+            }
+    });
+
+    
+}
 module.exports.createUser = function(req,res){
     if(req.body.password != req.body.psw_repeat)
     {
