@@ -1,3 +1,4 @@
+const { render } = require('ejs');
 const User = require('../models/user');
 module.exports.profile=function(req,res){
 
@@ -9,6 +10,28 @@ module.exports.contact=function(req,res){
 }
 module.exports.signup = function(req,res){
     return res.render('user_sign_up',{});
+}
+module.exports.showProfile = function(req, res){
+    // console.log(`THis is cookie sent from server ${req.cookies.name}`);
+    if(req.cookies.user_id == null)// indicates iilegal get 
+        return res.redirect('/user/signin');
+    console.log("cookie id is : ",req.cookies.user_id);
+    User.findOne({_id:req.cookies.user_id},function(err,data){
+        if(err){
+            console.log("error in finding user while signUp",err);
+            return;
+        }
+        if(data){
+            
+            return res.render("profile",{
+                title : "User_Profile",
+                user : data
+            });
+        }else{
+            return res.redirect('/user/signin');
+        }
+    })
+    
 }
 module.exports.createSession = function(req,res){
     //search user in db
@@ -27,7 +50,9 @@ module.exports.createSession = function(req,res){
                 if(data.password == req.body.password)
                 {
                     res.cookie('user_id', data.id);
-                    return res.redirect('/');
+                    res.cookie('name',data.name);
+                    res.cookie('email',data.email);
+                    return res.redirect('/user/profile');
                 }else{
                     //if password is incorrect
                     console.log("password is incorrect");

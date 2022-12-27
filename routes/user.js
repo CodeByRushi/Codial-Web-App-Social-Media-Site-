@@ -9,4 +9,5 @@ router.get('/signin',user.signin);
 
 router.post('/create',user.createUser);
 router.post('/createSession', user.createSession);
+router.get('/profile', user.showProfile);
 module.exports = router;
