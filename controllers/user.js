@@ -11,6 +11,14 @@ module.exports.contact=function(req,res){
 module.exports.signup = function(req,res){
     return res.render('user_sign_up',{});
 }
+module.exports.signout = function(req,res){
+    console.log("sign out clicked", req.cookies);
+    res.clearCookie('user_id');
+    res.clearCookie('email');
+    res.clearCookie('name');
+    console.log("2. sign out clicked", req.cookies);
+    return res.redirect('/user/signin');
+}
 module.exports.showProfile = function(req, res){
     // console.log(`THis is cookie sent from server ${req.cookies.name}`);
     if(req.cookies.user_id == null)// indicates iilegal get 
