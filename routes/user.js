@@ -4,4 +4,8 @@ const user = require('../controllers/user');
 
 router.get('/', user.profile);
 router.get('/contact', user.contact);
+router.get('/signup',user.signup);
+router.get('/signin',user.signin);
+
+router.post('/create',user.createUser);
 module.exports = router;

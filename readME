@@ -84,3 +84,31 @@ module.exports.home=function(req,res){
     res.end("<h1>Hi from server</h1>")
 }
 -------------------------------
+- we can add multiple routes and controllers 
+	- we have to make necessary changes in each routes file and link it with controller file.
+- install ejs 
+	set view engines as ejs.
+		app.set('view engine', 'ejs');
+
+	Set path for views.
+		app.set('views', './views');
+-------------------------------
+-setup the static files
+	//enables static files accessible to the project
+	app.use(express.static("assets"));
+	
+----------------------------------
+-setup the database
+	npm install mongoose
+	setup mongoose.js under "config folder".
+	require that config in our app.
+	setup model
+	require that config in our app.
+-------------------------------------
+-setup the cookies
+	npm install cookie-parser
+	require that parser in app then use that parser as middleware
+	const cookieParser = require('cookie-parser');
+	//for parsing cookies 
+	app.use(cookieParser());
+	
