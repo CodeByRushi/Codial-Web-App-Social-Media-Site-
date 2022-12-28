@@ -57,7 +57,7 @@ module.exports.createSession = function(req,res){
                 //user is exist now check if password is correct
                 if(data.password == req.body.password)
                 {
-                    res.cookie('user_id', data.id);
+                    res.cookie('user_id', data.id);//setting cookies
                     res.cookie('name',data.name);
                     res.cookie('email',data.email);
                     return res.redirect('/user/profile');

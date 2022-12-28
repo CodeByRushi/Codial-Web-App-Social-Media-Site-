@@ -1,0 +1,4 @@
+npm install passport
+npm install passport-local  //installing strategy
+-info :: manual authentication uses cookies and passport authentication uses session cookies which is encrypted.
+

@@ -111,4 +111,5 @@ module.exports.home=function(req,res){
 	const cookieParser = require('cookie-parser');
 	//for parsing cookies 
 	app.use(cookieParser());
+-------------------------
 	
