@@ -11,6 +11,3 @@ router.get('/',controller.home);
 router.use('/friends',friends);
 router.use('/user', user);
 module.exports = router;//external file can use it
-
-
-

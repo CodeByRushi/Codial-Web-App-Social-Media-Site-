@@ -4,6 +4,11 @@ const cookieParser = require('cookie-parser');
 const port = 8000;// When we deploy the app on production its port should be 80
 const router = require('./routes/index');
 const db = require('./config/mongoose');
+//used for session cookie
+const session = require('express-session');//because express session help us to put session cookie in browser(in encrypted format).
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
+
 //for parsing POST request
 app.use(express.urlencoded());
 
@@ -11,12 +16,30 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 
 app.use(express.static("assets"));
-//use express router
-app.use('/',router);
+
 
 //set up the view engine
 app.set('view engine', 'ejs');
 app.set('views', './views');
+
+
+app.use(session({
+    name:'codeial',
+    // TODO change the secret before deployment in production mode
+    secret:'blahSomething',
+    saveUninitialized:true,
+    resave:true,
+    cookie:{
+        maxAge:(1000 * 60 * 100)
+    }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(passport.setAuthenticatedUser);
+//use express router
+app.use('/',router);
 
 app.listen(port, function(err){
     if(err){

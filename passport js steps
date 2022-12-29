@@ -1,0 +1,14 @@
+npm install passport
+npm install passport-local  //installing strategy
+-info :: manual authentication uses cookies and passport authentication uses session cookies which is encrypted.
+
+Once we are done with config -> localStrategy file
+
+come into index.js(our app);
+	npm install express-session
+	//because express session help us to put session cookie in browser(in encrypted format).
+
+after requiring all libraries in app, then write code after template engine middleware.
+
+
+	

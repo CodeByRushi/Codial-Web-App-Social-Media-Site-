@@ -1,13 +1,17 @@
 const User = require('../models/user');
 module.exports.profile=function(req,res){
 
-    res.end("<h1>Hi from server to profile</h1>")
+    return res.render('profile');
 }
 module.exports.contact=function(req,res){
 
     res.end("<h1>Hi from server to contact is 456789123</h1>")
 }
 module.exports.signup = function(req,res){
+    if(req.isAuthenticated()){
+        console.log("it is already authenticated");
+        return res.redirect('/user/profile');
+    }
     return res.render('user_sign_up',{});
 }
 
@@ -44,6 +48,16 @@ module.exports.signin = function(req,res){
     // console.log(req.cookies);
     // res.cookie("name", 'sandysundi');
     // res.cookie("id",55);
+    if(req.isAuthenticated()){
+        console.log("it is already authenticated");
+        return res.redirect('/user/profile');
+    }
     return res.render('user_sign_in',{});
+}
+
+
+//sign in and create session
+module.exports.createSession = function(req,res){
+    return res.redirect('/user/profile');
 }
 
