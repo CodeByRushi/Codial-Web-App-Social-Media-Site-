@@ -5,5 +5,12 @@
     <body>
         <h2>User's Profile name : <%= user.name%></h2>
         <a href = "/user/signout">Signout</a>
+
+        <section id="post-feed">
+            <form action="/post/create-post" method="POST">
+                <textarea name="content" cols="30" rows="3" placeholder="Type here.." required></textarea>
+                <input type="submit" value="Post">
+            </form>
+        </section>
     </body>
 </html>
