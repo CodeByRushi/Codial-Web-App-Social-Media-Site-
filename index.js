@@ -9,6 +9,16 @@ const session = require('express-session');//because express session help us to 
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo');
+const sassMiddleware = require('node-sass-middleware');
+
+// app.use();
+app.use(sassMiddleware({
+    src: './assets/SCSS',
+    dest: './assets/CSS',
+    debug: true,
+    outputStyle: 'extended',
+    prefix: '/CSS'
+}));
 
 //for parsing POST request
 app.use(express.urlencoded());
@@ -55,6 +65,7 @@ app.listen(port, function(err){
         console.log(`There is an error in running the server`);
         return;
     }
+   
     console.log(`Server is running fine on port ${port}`);
 
 })

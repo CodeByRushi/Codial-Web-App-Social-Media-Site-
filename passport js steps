@@ -10,5 +10,7 @@ come into index.js(our app);
 
 after requiring all libraries in app, then write code after template engine middleware.
 
+Read the code of "passport-local-strategy" file. Authentication part is written over there.
+Then just read index.js to understand what middlewares addded.
 
 	

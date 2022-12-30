@@ -1,0 +1,52 @@
+SASS(Syntactically Awesome Style Sheets) is indented syntax and SCSS(Sassy Cascading Style Sheets)is having brackets
+About SASS:
+	Sass stands for Syntactically Awesome Stylesheet
+	Sass is an extension to CSS
+	Sass is a CSS pre-processor
+	Sass is completely compatible with all versions of CSS
+	Sass reduces repetition of CSS and therefore saves time
+	Sass was designed by Hampton Catlin and developed by Natalie Weizenbaum in 2006
+	Sass is free to download and use.
+Use of SASS:
+	Stylesheets are getting larger, more complex, and harder to maintain. This is where a CSS pre-processor can help.
+	Sass lets you use features that do not exist in CSS, like variables, nested rules, mixins, imports, inheritance, built-in  		functions, and other stuff.
+	
+e.g
+CSS =>
+	div p a {
+		CSS properties
+	}
+SASS =>
+	div
+	    properties of div
+	    p
+		properties of p tag
+		a
+		   properties of a tag
+		   
+SCSS = >
+	div{
+		properties of div.
+		p{
+			properties of p tag.
+			a{
+				properties of a tag.
+			}
+		}
+	}
+	
+For more knowledge:
+	https://sass-lang.com/guide
+	
+Setting up the SCSS
+
+- npm install node-sass-middleware
+- const sassMiddleware = require('node-sass-middleware');
+
+	app.use(sassMiddleware({
+	    src: './assets/SCSS',
+	    dest: './assets/CSS',
+	    debug: true,
+	    outputStyle: 'extended',
+	    prefix: '/CSS'
+	}));
