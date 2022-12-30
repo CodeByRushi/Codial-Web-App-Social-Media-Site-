@@ -1,10 +1,28 @@
 const User = require('../models/user');
-
+const Post = require('../models/post');
+const { post } = require('../routes/post');
 
 
 module.exports.profile=function(req,res){
 
-    return res.render('profile');
+    // Post.find({},function(err, posts){
+    //     if(err){console.log("error in fetching posts",err); return;}
+    //     return res.render('profile', {
+    //         title:'profile',
+    //         posts:posts
+    //     });
+    // });
+    Post.find({}).populate('user').exec(function(err,posts){
+        if(err){console.log("error in fetching posts",err); return;}
+            let date = posts[0].user.createdAt.toString().split(' ');
+            // console.log(date[0]+" "+date[1]+" "+date[2]);
+            console.log(date);
+            return res.render('profile', {
+                title:'profile',
+                posts:posts
+        });
+    });
+    
 }
 module.exports.contact=function(req,res){
 

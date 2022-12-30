@@ -12,5 +12,20 @@
                 <input type="submit" value="Post">
             </form>
         </section>
+
+        <section id="post-container">
+            <ul>
+                <%for(post of posts){%>
+                    <p>
+                        <li>
+                            <%= post.content%>
+                            <small><%= post.user.name%></small>
+                            <% let date = post.user.createdAt.toString().split(' ');%>
+                            Created at<small> <%= date[0]+" "+date[1]+" "+date[2]+" "+date[4]%></small>
+                        </li>
+                    </p>
+                <%}%>
+            </ul>
+        </section>
     </body>
 </html>
