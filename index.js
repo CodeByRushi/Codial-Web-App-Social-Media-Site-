@@ -8,6 +8,7 @@ const db = require('./config/mongoose');
 const session = require('express-session');//because express session help us to put session cookie in browser(in encrypted format).
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
+const MongoStore = require('connect-mongo');
 
 //for parsing POST request
 app.use(express.urlencoded());
@@ -31,7 +32,15 @@ app.use(session({
     resave:true,
     cookie:{
         maxAge:(1000 * 60 * 100)
-    }
+    },
+    store:MongoStore.create({
+        mongoUrl: 'mongodb://localhost/Codial_db',
+        autoRemove: 'disabled'
+      },
+        function(err){
+            console.log(err ||  'connect-mongodb setup ok');
+        }
+    )
 }));
 
 app.use(passport.initialize());
